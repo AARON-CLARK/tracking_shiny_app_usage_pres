@@ -845,11 +845,11 @@ class: inverse, center, middle
 ---
 # My Resources
 
-* [R Shiny Google Analytics: How to add GA to shiny Apps](https://appsilon.com/r-shiny-google-analytics/)
-* [Top 3 Tools to Monitor User Adoption in R Shiny](https://appsilon.com/monitoring-r-shiny-user-adoption/#shiny-stats)
+* [R Shiny Google Analytics: How to add GA to shiny Apps](https://appsilon.com/r-shiny-google-analytics/) By Appsilon
+* [Top 3 Tools to Monitor User Adoption in R Shiny](https://appsilon.com/monitoring-r-shiny-user-adoption/#shiny-stats) By Appsilon
 * [`{shinylogs}` Documentation](https://dreamrs.github.io/shinylogs/index.html)
 * [`{connectapi}` Documentation](https://awshpc22133.abc.amazon.biogen.com/IDEA/)
-* [Youtube: Shiny Usage Tracking in RStudio Connect](https://www.youtube.com/watch?v=0iljqY9j64U)
+* [Youtube: Shiny Usage Tracking in RStudio Connect](https://www.youtube.com/watch?v=0iljqY9j64U) By Cole Arendt @ Rstudio
 
 ---
 class: inverse, center, middle
