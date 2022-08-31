@@ -41,7 +41,7 @@ name: title-slide
 
 Aaron Clark <br> Principal Data Scientist <br> Biogen <br>
 2022-08-31 <br>
-[bit.ly/shiny_usage](https://bit.ly/shiny_usage) - slides
+[bit.ly/crug_aug22](https://bit.ly/crug_aug22) - slides
 
 
 ---
