@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>tracking_usage_pres.knit</title>
+    <title>tracking_usage_pres_crug.knit</title>
     <meta charset="utf-8" />
     <script src="libs/header-attrs-2.14/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
@@ -11,7 +11,7 @@
     <link href="libs/animate.css-3.7.2/animate.xaringan.css" rel="stylesheet" />
     <link href="libs/tachyons-4.12.0/tachyons.min.css" rel="stylesheet" />
     <script src="libs/xaringanExtra_fit-screen-0.2.6/fit-screen.js"></script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"c34124f2f1e14c419021181ce8c31cb8","expires":14}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xf317e7b47a94553a39c3adfe8957cfa","expires":14}</script>
     <script src="libs/himalaya-1.1.0/himalaya.js"></script>
     <script src="libs/js-cookie-3.0.0/js.cookie.js"></script>
     <link href="libs/editable-0.2.6/editable.css" rel="stylesheet" />
@@ -47,13 +47,33 @@ name: title-slide
 
 # Tracking shiny app usage
 ## A Reivew of tools
-### [WMRUG](http://wmrug.org)
+### [CRUG](https://www.cytel.com/)
 
 &lt;br&gt;
 
 Aaron Clark &lt;br&gt; Principal Data Scientist &lt;br&gt; Biogen &lt;br&gt;
-2022-07-12 &lt;br&gt;
+2022-08-31 &lt;br&gt;
 [bit.ly/shiny_usage](https://bit.ly/shiny_usage) - slides
+
+
+---
+# Learning Shiny 
+
+#### Resources
+- [Written and video tutorials](https://shiny.rstudio.com/tutorial/) for users who are new to Shiny
+- [Shiny app gallery](https://shiny.rstudio.com/gallery/) to be inspired by and to learn from
+- [Articles](https://shiny.rstudio.com/articles/) related to all aspects of Shiny app development
+- [Getting help](https://shiny.rstudio.com/articles/help.html) about anything related to R and Shiny
+
+#### Books
+- [Mastering Shiny](https://mastering-shiny.org/) by Hadley Wickham
+- [Engineering Production-Grade Shiny Apps](https://engineering-shiny.org/) by Colin Fay and others
+- [Outstanding User Interfaces with Shiny](https://unleash-shiny.rinterface.com/index.html) by David Granjon
+
+#### Tutorials
+- [Shiny tutorial and cheat sheet](http://zevross.com/blog/2016/04/19/r-powered-web-applications-with-shiny-a-tutorial-and-cheat-sheet-with-40-example-apps/) by Zev Ross
+- [A gradual introduction to Shiny](https://laderast.github.io/gradual_shiny/) by Ted Laderas et al.
+- [Building Shiny apps](https://deanattali.com/blog/building-shiny-apps-tutorial/) – an interactive tutorial by Dean Attali
 
 ---
 
@@ -358,32 +378,6 @@ class: inverse, center, middle
 # Track events with GA
 
 Note: requires some javascript knowledge!
-
----
-# Tracking events w/ GA
-
-Let's say you have the following dropdown input, like in the [forest ranges shiny app](https://demo.prod.appsilon.ai/forest-ranges/).
-
-
-```r
-shiny.semantic::dropdown_input(
-  input_id = ns("tree_specie"),
-  choices = c("Baltic Pine", "European silver fir", "Douglas fir"),
-  choices_value = c("Pinus Slyvestris", "Abies Alba", "Albus Dumbledore"),
-  default_text = "Tree species",
-  value = "Douglas fir"
-)
-```
-### Finding an element
-`dropdown_input` generates a dropdown menu where each element has a class `item`, so since this is our only dropdown in the app, we can find this element pretty easily using `$('.item')` jQuery Syntax.
-
----
-## Finding an element can be tough
-
-In chrome, right click on the element and select `inspect` to pull up the developer console. There, you can weed through the html looking for classes or `id`s specific to the element:
-
-
-![inspect](images/inspect.PNG)
 
 ---
 # Add an event listener
@@ -747,35 +741,14 @@ The [Server API](https://docs/rstudio.com/connect/api) comes with the RSConnect 
 Resources:
 * [Documentation](https://docs/rstudio.com/connect/api)
 * [Cookbook](https://docs.rstudio.com/connect/cookbook)
-* [R Client](https://pkgs.rstudio.com/connectapi/) - `{connectapi}` not on CRAN (yet)
+* [R Client](https://pkgs.rstudio.com/connectapi/) - `{connectapi}` (we'll cover this next)
 
-
+### Not on CRAN (yet)
 
 ```r
 remotes::install_github('rstudio/connectapi')
 ```
 
---
-
-## Teaser
-Future goal of `{connectapi}` - anything clickable in the UI can be mimicked programmatically via the API.
-
----
-# The API's instrumentation data can answer...
-
-* How many reports/apps on the server?
-
-* Which users have access?
-
-* Who looked at this report recently?
-
-* What's the cadence of their visits?
-
-* How long do they stay?
-
---
-
-And the Rstudio team is working on many experimental feature requests as we speak.
 
 ---
 # Connect to the Connect Server API
@@ -847,7 +820,7 @@ class: inverse, center, middle
 
 - Did you gain a general working knowledge of 
 
-  - bit.ly (yep)
+  - bit.ly
   
   - Google Analytics
 

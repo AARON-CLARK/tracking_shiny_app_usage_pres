@@ -1,44 +1,32 @@
-<!DOCTYPE html>
-<html lang="" xml:lang="">
-  <head>
-    <title>tracking_usage_pres.knit</title>
-    <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.14/header-attrs.js"></script>
-    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
-    <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
-    <script src="libs/tile-view-0.2.6/tile-view.js"></script>
-    <link href="libs/animate.css-3.7.2/animate.xaringan.css" rel="stylesheet" />
-    <link href="libs/tachyons-4.12.0/tachyons.min.css" rel="stylesheet" />
-    <script src="libs/xaringanExtra_fit-screen-0.2.6/fit-screen.js"></script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"c34124f2f1e14c419021181ce8c31cb8","expires":14}</script>
-    <script src="libs/himalaya-1.1.0/himalaya.js"></script>
-    <script src="libs/js-cookie-3.0.0/js.cookie.js"></script>
-    <link href="libs/editable-0.2.6/editable.css" rel="stylesheet" />
-    <script src="libs/editable-0.2.6/editable.js"></script>
-    <script src="libs/xaringanExtra-webcam-0.0.1/webcam.js"></script>
-    <script id="xaringanExtra-webcam-options" type="application/json">{"width":"200","height":"200","margin":"1em"}</script>
-    <script src="libs/clipboard-2.0.6/clipboard.min.js"></script>
-    <link href="libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
-    <script src="libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
-    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
-    <script src="libs/mark.js-8.11.1/mark.min.js"></script>
-    <link href="libs/xaringanExtra-search-0.0.1/search.css" rel="stylesheet" />
-    <script src="libs/xaringanExtra-search-0.0.1/search.js"></script>
-    <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":false,"autoSearch":true}) })</script>
-    <script src="libs/fabric-4.3.1/fabric.min.js"></script>
-    <link href="libs/xaringanExtra-scribble-0.0.1/scribble.css" rel="stylesheet" />
-    <script src="libs/xaringanExtra-scribble-0.0.1/scribble.js"></script>
-    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
-    <link href="libs/xaringanExtra-extra-styles-0.2.6/xaringanExtra-extra-styles.css" rel="stylesheet" />
-  </head>
-  <body>
-    <textarea id="source">
+---
+output:
+  xaringan::moon_reader:
+    self_contained: false
+    lib_dir: libs
+    nature:
+      highlightLines: true
+      highlightLanguage: R
+      countIncrementalSlides: false
+---
 
 
+```{r startup, include = FALSE, message = FALSE, warning = FALSE, cache=TRUE}
 
-
-
+```
+```{r xaringanExtra, echo=FALSE, include = FALSE}
+library(dplyr)
+# "share_again",
+xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "scribble", "search", "webcam", "clipboard", "fit_screen", "tachyons", "editable")) 
+# xaringanExtra::use_animate_all("slide_left")
+# xaringanExtra::use_logo(
+#   image_url = "https://en.wikipedia.org/wiki/Biogen#/media/File:Biogen.svg",
+#   link_url = "https://www.biogen.com/"
+# )
+xaringanExtra::use_extra_styles(
+  hover_code_line = TRUE,         #<<
+  mute_unhighlighted_code = TRUE  #<<
+)
+```
 
 layout: false
 class: title-slide, inverse, middle, right, main_slide
@@ -47,13 +35,33 @@ name: title-slide
 
 # Tracking shiny app usage
 ## A Reivew of tools
-### [WMRUG](http://wmrug.org)
+### [CRUG](https://www.cytel.com/)
 
-&lt;br&gt;
+<br>
 
-Aaron Clark &lt;br&gt; Principal Data Scientist &lt;br&gt; Biogen &lt;br&gt;
-2022-07-12 &lt;br&gt;
+Aaron Clark <br> Principal Data Scientist <br> Biogen <br>
+2022-08-31 <br>
 [bit.ly/shiny_usage](https://bit.ly/shiny_usage) - slides
+
+
+---
+# Learning Shiny 
+
+#### Resources
+- [Written and video tutorials](https://shiny.rstudio.com/tutorial/) for users who are new to Shiny
+- [Shiny app gallery](https://shiny.rstudio.com/gallery/) to be inspired by and to learn from
+- [Articles](https://shiny.rstudio.com/articles/) related to all aspects of Shiny app development
+- [Getting help](https://shiny.rstudio.com/articles/help.html) about anything related to R and Shiny
+
+#### Books
+- [Mastering Shiny](https://mastering-shiny.org/) by Hadley Wickham
+- [Engineering Production-Grade Shiny Apps](https://engineering-shiny.org/) by Colin Fay and others
+- [Outstanding User Interfaces with Shiny](https://unleash-shiny.rinterface.com/index.html) by David Granjon
+
+#### Tutorials
+- [Shiny tutorial and cheat sheet](http://zevross.com/blog/2016/04/19/r-powered-web-applications-with-shiny-a-tutorial-and-cheat-sheet-with-40-example-apps/) by Zev Ross
+- [A gradual introduction to Shiny](https://laderast.github.io/gradual_shiny/) by Ted Laderas et al.
+- [Building Shiny apps](https://deanattali.com/blog/building-shiny-apps-tutorial/) – an interactive tutorial by Dean Attali
 
 ---
 
@@ -70,7 +78,7 @@ User adoption, sometimes just called onboarding, is the process by which new use
 — Jenny Booth
 ]]
 
-&lt;br&gt;
+<br>
 
 Source: [mixpanel.com](https://mixpanel.com/blog/how-to-develop-and-measure-a-user-adoption-strategy/#:~:text=User%20adoption%2C%20sometimes%20called%20onboarding,food%20or%20launching%20a%20business)
 
@@ -103,7 +111,7 @@ You probably...
 
 Maybe it means going back to the drawing board to re-assess your approach.
 
-&lt;br&gt;
+<br>
 
 [gif source](https://media4.giphy.com/media/J2zwN64xc4wgw/200.gif)
 
@@ -111,15 +119,15 @@ Maybe it means going back to the drawing board to re-assess your approach.
 
 # The strategy 
 
-&gt; "I want you to spend your precious cognitive resources on the specific details of your data, not on struggling to get R to do what you want. My long term goal is to create a [pit of success](https://quorasessionwithhadleywickham.quora.com/What-is-the-vision-behind-the-tidyverse) where the default path leads to a great result." - Hadley Wickham
+> "I want you to spend your precious cognitive resources on the specific details of your data, not on struggling to get R to do what you want. My long term goal is to create a [pit of success](https://quorasessionwithhadleywickham.quora.com/What-is-the-vision-behind-the-tidyverse) where the default path leads to a great result." - Hadley Wickham
 
-&lt;br&gt;
+<br>
 
 ![Pit of Success](images/pit.gif)
 
 --
 
-&lt;br&gt;
+<br>
 
 How do we do this? 
 
@@ -129,7 +137,7 @@ How do we do this?
 
 # Measure, measure, measure
 
-* Before writing code &amp; at each iteration of the project, understand users: 
+* Before writing code & at each iteration of the project, understand users: 
   * motivations
   * needs
   * environments
@@ -149,7 +157,7 @@ class: inverse, middle, center
 
 You have limited communication with end users?
 
-&lt;br&gt;
+<br>
 
 --
 
@@ -157,7 +165,7 @@ You have limited communication with end users?
 
 You aren't getting the whole story via user feedback?
 
-&lt;br&gt;
+<br>
 
 --
 
@@ -233,14 +241,14 @@ There are many, and which one you choose will depend on your end goal
 
 .pull-right[
 
-&lt;br&gt;
+<br>
 
-.center[&lt;img src="images/tools.png" alt="tools" width="250"/&gt;]
+.center[<img src="images/tools.png" alt="tools" width="250"/>]
 ]
 
 --
 
-- Understand when &amp; where to use each tool
+- Understand when & where to use each tool
 
 --
 
@@ -286,7 +294,7 @@ When to use?
 
 # How do I create a bit.ly link?
 
-Copy &amp; paste a (long) link into their link shortener, and customize the back half to start collecting stats!
+Copy & paste a (long) link into their link shortener, and customize the back half to start collecting stats!
 
 ![bit.ly example](images/bitly_example.PNG)
 
@@ -311,17 +319,16 @@ Best used when you have a public facing app (i.e. shinyapps.io)
 
 * Find your tracking code for your website (aka property)
 
-
-```js
-/*&lt;!-- Global site tag (gtag.js) - Google Analytics --&gt;*/
-&lt;script async src="https://www.googletagmanager.com/gtag/js?id=G-ThisIsNotReal"&gt;
-&lt;script&gt;
+```{js, eval = FALSE}
+/*<!-- Global site tag (gtag.js) - Google Analytics -->*/
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ThisIsNotReal">
+<script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'G-ThisIsNotReal');
-&lt;/script&gt;
+</script>
 ```
 
 ---
@@ -329,8 +336,7 @@ Best used when you have a public facing app (i.e. shinyapps.io)
 
 * Add it to the app
 
-
-```r
+```{r, eval = FALSE}
 # somewhere inside the UI
 shiny::tags$head(
   shiny::tags$script(
@@ -346,11 +352,11 @@ shiny::tags$head(
 
 # Google Analytics: Getting Started (cont'd)
 
-* Redeploy &amp; test
+* Redeploy & test
 
-After deployment &amp; visiting shiny app site, you may have to wait about 1 - 2 minutes (max) before data stream flowing into GA report.
+After deployment & visiting shiny app site, you may have to wait about 1 - 2 minutes (max) before data stream flowing into GA report.
 
-&lt;br&gt;
+<br>
 
 ![GA_visits](images/ga_first_time_usage.PNG)
 ---
@@ -360,37 +366,10 @@ class: inverse, center, middle
 Note: requires some javascript knowledge!
 
 ---
-# Tracking events w/ GA
-
-Let's say you have the following dropdown input, like in the [forest ranges shiny app](https://demo.prod.appsilon.ai/forest-ranges/).
-
-
-```r
-shiny.semantic::dropdown_input(
-  input_id = ns("tree_specie"),
-  choices = c("Baltic Pine", "European silver fir", "Douglas fir"),
-  choices_value = c("Pinus Slyvestris", "Abies Alba", "Albus Dumbledore"),
-  default_text = "Tree species",
-  value = "Douglas fir"
-)
-```
-### Finding an element
-`dropdown_input` generates a dropdown menu where each element has a class `item`, so since this is our only dropdown in the app, we can find this element pretty easily using `$('.item')` jQuery Syntax.
-
----
-## Finding an element can be tough
-
-In chrome, right click on the element and select `inspect` to pull up the developer console. There, you can weed through the html looking for classes or `id`s specific to the element:
-
-
-![inspect](images/inspect.PNG)
-
----
 # Add an event listener
 
-
-```js
-$('.item').on('click', (event) =&gt; {
+```{js, eval=FALSE}
+$('.item').on('click', (event) => {
   const selectedSpecie = $(event.currentTarget).data().value;
   gtag('event', 'specie_selected', {
     selected_specie: selectedSpecie
@@ -426,8 +405,7 @@ class: inverse, center, middle
 Logging tool for Shiny applications: record inputs or outputs changes, and info about user’s session. All recording is done client-side to not slow down the application and occupy the server.
 
 ### Install
-
-```r
+```{r, eval=FALSE}
 # From CRAN
 install.packages("shinylogs") 
 
@@ -442,8 +420,7 @@ remotes::install_github("dreamRs/shinylogs")
 
 Call the main function `track_usage()` in server part of application, and specify where to write logs:
 
-
-```r
+```{r, eval=FALSE}
 # UI
 use_tracking()
 
@@ -518,7 +495,7 @@ Deployment with `{shinylogs}`
 
 With [ShinyProxy](https://www.shinyproxy.io/), you can use a Docker volume to write logs outside of the application container. In `application.yml`, you use can something like this in the specs describing the application:
 
-&gt; container-volumes: [ "/var/log/shinylogs:/root/logs" ]
+> container-volumes: [ "/var/log/shinylogs:/root/logs" ]
 
 `/var/log/shinylogs` is a directory on the server where you deploy your applications with ShinyProxy. `/root/logs` is a directory inside your Docker image, it’s the path you can use in `track_usage()`, e.g. :
 
@@ -646,8 +623,7 @@ Yet another way to log user data
 Easy way for logging users’ activity **and** creating a dashboard to ingest the data. The only requirement is that you have an accessible database, which can be as simple as a local PostgreSQL database or a sqlite file.
 
 First step is installation:
-
-```r
+```{r, eval=FALSE}
 devtools::install_github("Appsilon/shiny.stats")
 ```
 
@@ -657,9 +633,8 @@ devtools::install_github("Appsilon/shiny.stats")
 
 The next step is to initialize the database you want to use with shiny.stats. You should only do this once. The snippet below will connect to a sqlite database named user_stats:
 
-
-```r
-connection &lt;- DBI::dbConnect(RSQLite::SQLite(), dbname = "user_stats.sqlite")
+```{r, eval=FALSE}
+connection <- DBI::dbConnect(RSQLite::SQLite(), dbname = "user_stats.sqlite")
 DBI::dbDisconnect(connection)
 ```
 
@@ -667,9 +642,8 @@ DBI::dbDisconnect(connection)
 # `{shiny.stats}` Set up (cont'd)
 
 Now comes the potentially tricky part (depending on how your app’s authentication is set up): you’ll need to define a function to extract the username. The below example will extract it from the URL, from a dedicated username parameter.
-
-```r
-get_user &lt;- function(session) {
+```{r, eval=FALSE}
+get_user <- function(session) {
   parseQueryString(isolate(session$clientData$url_search))$username
 }
 ```
@@ -679,10 +653,9 @@ get_user &lt;- function(session) {
 
 The magic happens in the server function where the database connection is established and user behavior is monitored:
 
-
-```r
+```{r, eval=FALSE}
 # creates user connection list and ensures required tables exist in DB
-user_connection &lt;- initialize_connection(connection,
+user_connection <- initialize_connection(connection,
                                          username = get_user(session))
 
 # register login
@@ -707,24 +680,23 @@ Open the sqlite file in your favorite database management tool
 
 The most handy feature of `{shiny.stats}`? You can easily display users’ stats in an R Shiny dashboard. The following example code snippet creates a dashboard that allows you to monitor user adoption:
 
-
-```r
+```{r, eval=FALSE}
 library(shiny);library(RSQLite);library(shiny.stats);
 
 # prepare credentials list to access logs:
-db_credentials &lt;- list(DB_NAME = "user_stats.sqlite",
+db_credentials <- list(DB_NAME = "user_stats.sqlite",
                        DB_DRIVER = "SQLite")
 
 # define function for extracting username
-get_user &lt;- function(session) {
-  username &lt;- isolate(parseQueryString(session$clientData$url_search)$username)
+get_user <- function(session) {
+  username <- isolate(parseQueryString(session$clientData$url_search)$username)
   req(username)
   return(username)
 }
 
 # define ui and server
-ui &lt;- shiny_stats_ui()
-server &lt;- shiny_stats_server(get_user, db_credentials = db_credentials)
+ui <- shiny_stats_ui()
+server <- shiny_stats_server(get_user, db_credentials = db_credentials)
 shinyApp(ui = ui, server = server,
          options = list(port = 8887, launch.browser = FALSE))
 ```
@@ -747,64 +719,40 @@ The [Server API](https://docs/rstudio.com/connect/api) comes with the RSConnect 
 Resources:
 * [Documentation](https://docs/rstudio.com/connect/api)
 * [Cookbook](https://docs.rstudio.com/connect/cookbook)
-* [R Client](https://pkgs.rstudio.com/connectapi/) - `{connectapi}` not on CRAN (yet)
+* [R Client](https://pkgs.rstudio.com/connectapi/) - `{connectapi}` (we'll cover this next)
 
-
-
-```r
+### Not on CRAN (yet)
+```{r, eval=FALSE}
 remotes::install_github('rstudio/connectapi')
 ```
 
---
-
-## Teaser
-Future goal of `{connectapi}` - anything clickable in the UI can be mimicked programmatically via the API.
-
----
-# The API's instrumentation data can answer...
-
-* How many reports/apps on the server?
-
-* Which users have access?
-
-* Who looked at this report recently?
-
-* What's the cadence of their visits?
-
-* How long do they stay?
-
---
-
-And the Rstudio team is working on many experimental feature requests as we speak.
 
 ---
 # Connect to the Connect Server API
 
-
-```r
+```{r, eval=FALSE}
 library(connectapi)
 
-client &lt;- connect(
+client <- connect(
   server = 'https://connect.example.com',
-  api_key = '&lt;SUPER SECRET API KEY&gt;'
+  api_key = '<SUPER SECRET API KEY>'
 )
 
 # OR, if your server is defined by your environment variables, run:
-client &lt;- connect()
+client <- connect()
 ```
 
 If your role is "Publisher", you only get access to your content hosted on RSConnect! The "Admin" role gives you access to all content.
 
-
-```r
-users &lt;- get_users(client) # email, username, first &amp; last name, role, guid
-groups &lt;- get_groups(client) # group info - guid &amp; group name
-usage_shiny &lt;- get_usage_shiny(client) # content &amp; user guids, start and stop times
-usage_static &lt;- get_usage_static(client) # content &amp; user guids, timestamp visited
-some_content &lt;- get_content(client) # guid, content's name, title, description, etc
+```{r, eval=FALSE}
+users <- get_users(client) # email, username, first & last name, role, guid
+groups <- get_groups(client) # group info - guid & group name
+usage_shiny <- get_usage_shiny(client) # content & user guids, start and stop times
+usage_static <- get_usage_static(client) # content & user guids, timestamp visited
+some_content <- get_content(client) # guid, content's name, title, description, etc
 
 # get all content
-all_content &lt;- get_content(client, limit = Inf)
+all_content <- get_content(client, limit = Inf)
 ```
 
 
@@ -814,9 +762,8 @@ all_content &lt;- get_content(client, limit = Inf)
 
 For a shiny app:
 
-
-```r
-usage_shiny &lt;- get_usage_shiny(client) # content &amp; user guids, start and stop times
+```{r, eval=FALSE}
+usage_shiny <- get_usage_shiny(client) # content & user guids, start and stop times
 ```
 
 ![Example Instrumentation Data](images/instrumentation_data_shiny.PNG)
@@ -847,7 +794,7 @@ class: inverse, center, middle
 
 - Did you gain a general working knowledge of 
 
-  - bit.ly (yep)
+  - bit.ly
   
   - Google Analytics
 
@@ -887,139 +834,3 @@ Thank you!
 
 
 
-    </textarea>
-<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
-<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
-<script>var slideshow = remark.create({
-"highlightLines": true,
-"highlightLanguage": "R",
-"countIncrementalSlides": false
-});
-if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
-  window.dispatchEvent(new Event('resize'));
-});
-(function(d) {
-  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
-  if (!r) return;
-  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
-  d.head.appendChild(s);
-})(document);
-
-(function(d) {
-  var el = d.getElementsByClassName("remark-slides-area");
-  if (!el) return;
-  var slide, slides = slideshow.getSlides(), els = el[0].children;
-  for (var i = 1; i < slides.length; i++) {
-    slide = slides[i];
-    if (slide.properties.continued === "true" || slide.properties.count === "false") {
-      els[i - 1].className += ' has-continuation';
-    }
-  }
-  var s = d.createElement("style");
-  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
-  d.head.appendChild(s);
-})(document);
-// delete the temporary CSS (for displaying all slides initially) when the user
-// starts to view slides
-(function() {
-  var deleted = false;
-  slideshow.on('beforeShowSlide', function(slide) {
-    if (deleted) return;
-    var sheets = document.styleSheets, node;
-    for (var i = 0; i < sheets.length; i++) {
-      node = sheets[i].ownerNode;
-      if (node.dataset["target"] !== "print-only") continue;
-      node.parentNode.removeChild(node);
-    }
-    deleted = true;
-  });
-})();
-// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
-// screen reader (see PR #262)
-(function(d) {
-  let res = {};
-  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
-    const t = tr.querySelector('td:nth-child(2)').innerText;
-    tr.querySelectorAll('td:first-child .key').forEach(key => {
-      const k = key.innerText;
-      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
-    });
-  });
-  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
-})(document);
-(function() {
-  "use strict"
-  // Replace <script> tags in slides area to make them executable
-  var scripts = document.querySelectorAll(
-    '.remark-slides-area .remark-slide-container script'
-  );
-  if (!scripts.length) return;
-  for (var i = 0; i < scripts.length; i++) {
-    var s = document.createElement('script');
-    var code = document.createTextNode(scripts[i].textContent);
-    s.appendChild(code);
-    var scriptAttrs = scripts[i].attributes;
-    for (var j = 0; j < scriptAttrs.length; j++) {
-      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
-    }
-    scripts[i].parentElement.replaceChild(s, scripts[i]);
-  }
-})();
-(function() {
-  var links = document.getElementsByTagName('a');
-  for (var i = 0; i < links.length; i++) {
-    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
-      links[i].target = '_blank';
-    }
-  }
-})();
-// adds .remark-code-has-line-highlighted class to <pre> parent elements
-// of code chunks containing highlighted lines with class .remark-code-line-highlighted
-(function(d) {
-  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
-  const preParents = [];
-  const findPreParent = function(line, p = 0) {
-    if (p > 1) return null; // traverse up no further than grandparent
-    const el = line.parentElement;
-    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
-  };
-
-  for (let line of hlines) {
-    let pre = findPreParent(line);
-    if (pre && !preParents.includes(pre)) preParents.push(pre);
-  }
-  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
-})(document);</script>
-
-<script>
-slideshow._releaseMath = function(el) {
-  var i, text, code, codes = el.getElementsByTagName('code');
-  for (i = 0; i < codes.length;) {
-    code = codes[i];
-    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
-      text = code.textContent;
-      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
-          /^\$\$(.|\s)+\$\$$/.test(text) ||
-          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
-        code.outerHTML = code.innerHTML;  // remove <code></code>
-        continue;
-      }
-    }
-    i++;
-  }
-};
-slideshow._releaseMath(document);
-</script>
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-(function () {
-  var script = document.createElement('script');
-  script.type = 'text/javascript';
-  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
-  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
-    script.src  = script.src.replace(/^https?:/, '');
-  document.getElementsByTagName('head')[0].appendChild(script);
-})();
-</script>
-  </body>
-</html>
